@@ -1,0 +1,150 @@
+<div class="header">
+  <div class="headerContainer" [class.listMode]="type === 'hotelsList'">
+    <div class="headerList">
+      <div class="headerListItem active">
+        <fa-icon [icon]="faBed"></fa-icon>
+        <span>Stays</span>
+      </div>
+      <div class="headerListItem">
+        <fa-icon [icon]="faPlane"></fa-icon>
+        <span>Flights</span>
+      </div>
+      <div class="headerListItem">
+        <fa-icon [icon]="faCar"></fa-icon>
+        <span>Car rentals</span>
+      </div>
+      <div class="headerListItem">
+        <fa-icon [icon]="faBed"></fa-icon>
+        <span>Attractions</span>
+      </div>
+      <div class="headerListItem">
+        <fa-icon [icon]="faTaxi"></fa-icon>
+        <span>Airport taxis</span>
+      </div>
+    </div>
+    <div *ngIf="type !== 'hotelsList'">
+      <h1 class="headerTitle">A lifetime of discounts? It's Genius</h1>
+      <p class="headerDescription">
+        Get rewarded for your travels - Unlock instant savings of 10% or more
+        with a free Booking account
+      </p>
+      <button class="headerBtn">Sign in / Register</button>
+      <div class="headerSearch">
+        <div class="headerSearchItem">
+          <fa-icon [icon]="faBed" class="headerIcon"></fa-icon>
+          <input
+            type="text"
+            placeholder="Where are you going?"
+            class="headerSearchInput"
+            [(ngModel)]="destination"
+          />
+        </div>
+        <div class="headerSearchItem">
+          <fa-icon [icon]="faCalendarDays" class="headerIcon"></fa-icon>
+          <!-- <span class="headerSearchText" (click)="onOpenDate()">
+            {{ date1 }} to {{ date2 }}
+          </span> -->
+
+          <mat-form-field appearance="fill">
+            <mat-date-range-input
+              [rangePicker]="picker"
+              [formGroup]="range"
+              panelClass="headerSearchItem1"
+            >
+              <input
+                panelClass="headerSearchText1"
+                matStartDate
+                [placeholder]="currentDate"
+                [formControl]="start"
+              />
+              <input
+                panelClass="headerSearchText1"
+                matEndDate
+                [placeholder]="currentDate"
+                [formControl]="end"
+              />
+            </mat-date-range-input>
+
+            <mat-datepicker-toggle
+              matIconSuffix
+              [for]="picker"
+            ></mat-datepicker-toggle>
+            <mat-date-range-picker
+              panelClass="datepickerOne"
+              #picker
+            ></mat-date-range-picker>
+          </mat-form-field>
+        </div>
+        <div class="headerSearchItem">
+          <fa-icon [icon]="faPerson" class="headerIcon"></fa-icon>
+          <span class="headerSearchText" (click)="onOpenOptions()"
+            >{{ options.adult }} adults / {{ options.children }} childrens /
+            {{ options.room }} room</span
+          >
+          <div class="options" *ngIf="openOptions">
+            <div class="optionItem">
+              <span class="optionText">Adult</span>
+              <div class="optionCounter">
+                <button
+                  class="optionCounterButton"
+                  (click)="handleOption('adult', 'decrease')"
+                  [disabled]="options.adult <= 1"
+                >
+                  -
+                </button>
+                <span class="optionCounterNumber">{{ options.adult }}</span>
+                <button
+                  class="optionCounterButton"
+                  (click)="handleOption('adult', 'increase')"
+                >
+                  +
+                </button>
+              </div>
+            </div>
+            <div class="optionItem">
+              <span class="optionText">Children</span>
+              <div class="optionCounter">
+                <button
+                  class="optionCounterButton"
+                  (click)="handleOption('children', 'decrease')"
+                  [disabled]="options.children < 1"
+                >
+                  -
+                </button>
+                <span class="optionCounterNumber">{{ options.children }}</span>
+                <button
+                  class="optionCounterButton"
+                  (click)="handleOption('children', 'increase')"
+                >
+                  +
+                </button>
+              </div>
+            </div>
+            <div class="optionItem">
+              <span class="optionText">Room</span>
+              <div class="optionCounter">
+                <button
+                  class="optionCounterButton"
+                  (click)="handleOption('room', 'decrease')"
+                  [disabled]="options.room <= 1"
+                >
+                  -
+                </button>
+                <span class="optionCounterNumber">{{ options.room }}</span>
+                <button
+                  class="optionCounterButton"
+                  (click)="handleOption('room', 'increase')"
+                >
+                  +
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="headerSearchItem">
+          <button class="headerBtn" (click)="handleSearch()">Search</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
